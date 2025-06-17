@@ -2,6 +2,7 @@ package com.yc.api.controller;
 
 import com.yc.api.CheckFilterContext;
 import com.yc.api.common.R;
+import com.yc.api.common.RequestUtil;
 import com.yc.api.common.SmsCodeEnum;
 import com.yc.api.from.SingleSendForm;
 import com.yc.api.vo.ResultVO;
@@ -82,6 +83,8 @@ public class ApiController {
     public ResultVO send(@RequestBody @Validated SingleSendForm form, BindingResult result, HttpServletRequest request) {
         //打印ip地址
         log.info("ip:{}", request.getRemoteAddr());
+        //打印真实地址
+        log.info("realIp:{}", RequestUtil.getRealIp(request));
         if(result.hasErrors()){
             return R.error(result.getFieldError().getDefaultMessage(), SmsCodeEnum.ERROR.getCode());
         }
