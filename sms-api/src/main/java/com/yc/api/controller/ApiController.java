@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/api")
 @Slf4j
-public class TestController {
+public class ApiController {
 
     @Autowired
     private CheckFilterContext checkFilterContext;
@@ -77,7 +79,9 @@ public class TestController {
      * | -6     | 客户余额不足                  |
      */
     @PostMapping("/sendSingle")
-    public ResultVO send(@RequestBody @Validated SingleSendForm form, BindingResult result) {
+    public ResultVO send(@RequestBody @Validated SingleSendForm form, BindingResult result, HttpServletRequest request) {
+        //打印ip地址
+        log.info("ip:{}", request.getRemoteAddr());
         if(result.hasErrors()){
             return R.error(result.getFieldError().getDefaultMessage(), SmsCodeEnum.ERROR.getCode());
         }

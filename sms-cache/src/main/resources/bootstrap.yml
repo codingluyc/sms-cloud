@@ -1,11 +1,9 @@
-# 服务名称
 spring:
   application:
-    name: sms-api
-# 多环境
+    name: sms-cache
   profiles:
     active: dev
-# nacos配置
+#  nacos配置
   cloud:
     nacos:
       discovery:

@@ -1,0 +1,1 @@
+不推荐直接在模块内基于redisTemplate操作redis，因为reids一变，导致整个模块修改。
