@@ -22,7 +22,7 @@ public class SingleSendForm {
     @NotBlank(message = "mobile不能为空")
     private String mobile;
     @NotBlank(message = "text不能为空")
-    private String text;
+        private String text;
     @NotBlank(message = "uid不能为空")
     private String uid;
     @Range(min = 0, max = 2, message = "state取值范围0-验证码短信 1-通知类短信 2-营销类短信")

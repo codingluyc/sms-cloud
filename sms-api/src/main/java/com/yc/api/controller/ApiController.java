@@ -6,6 +6,7 @@ import com.yc.api.common.RequestUtil;
 import com.yc.api.common.SmsCodeEnum;
 import com.yc.api.from.SingleSendForm;
 import com.yc.api.vo.ResultVO;
+import com.yc.common.model.StandardSubmit;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -24,6 +25,9 @@ public class ApiController {
 
     @Autowired
     private CheckFilterContext checkFilterContext;
+
+    @Autowired
+    private RequestUtil requestUtil;
 
     @RequestMapping("/test")
     public void test() {
@@ -81,14 +85,22 @@ public class ApiController {
      */
     @PostMapping("/sendSingle")
     public ResultVO send(@RequestBody @Validated SingleSendForm form, BindingResult result, HttpServletRequest request) {
-        //打印ip地址
-        log.info("ip:{}", request.getRemoteAddr());
-        //打印真实地址
-        log.info("realIp:{}", RequestUtil.getRealIp(request));
         if(result.hasErrors()){
             return R.error(result.getFieldError().getDefaultMessage(), SmsCodeEnum.ERROR.getCode());
         }
-        checkFilterContext.check(new Object());
+        //打印真实地址
+        log.info("realIp:{}", requestUtil.getRealIp(request));
+
+        //封装数据
+        StandardSubmit standardSubmit = new StandardSubmit();
+        standardSubmit.setApiKey(form.getApikey());
+        standardSubmit.setMobile(form.getMobile());
+        standardSubmit.setText(form.getText());
+        standardSubmit.setUid(form.getUid());
+        standardSubmit.setState(form.getState());
+        standardSubmit.setIp(requestUtil.getRealIp(request));
+
+        checkFilterContext.check(standardSubmit);
         return R.ok();
     }
 }

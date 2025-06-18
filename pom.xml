@@ -18,6 +18,7 @@
         <module>sms-api</module>
         <module>sms-common</module>
         <module>sms-cache</module>
+        <module>sms-cache-loader</module>
     </modules>
 
     <properties>

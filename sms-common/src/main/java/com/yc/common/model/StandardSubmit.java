@@ -16,7 +16,10 @@ public class StandardSubmit {
 
     // 客户端标识，查询缓存
     private Long clientId;
-
+    //api key
+    private String apiKey;
+    // 短信类型 0-验证码短信 1-通知类短信 2-营销类短信
+    private Integer state;
     // ip
     private String ip;
     // uid

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DatabaseSettings">
+    <option name="database" value="sms" />
+    <option name="excludedFields">
+      <list>
+        <option value="" />
+      </list>
+    </option>
+    <option name="password" value="123456" />
+    <option name="selectedPackage" value="com.yc.cacheLoader" />
+    <option name="typeMappings">
+      <map>
+        <entry key="BIGINT" value="Long" />
+        <entry key="CHAR" value="String" />
+        <entry key="DATETIME" value="LocalTime" />
+        <entry key="INT" value="Integer" />
+        <entry key="TEXT" value="String" />
+        <entry key="VARCHAR" value="String" />
+      </map>
+    </option>
+    <option name="useLombok" value="true" />
+    <option name="username" value="root" />
+  </component>
+</project>

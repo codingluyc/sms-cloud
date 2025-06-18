@@ -10,24 +10,9 @@ import java.util.Map;
 @RequestMapping("/cache")
 public class CacheController {
 
-//    @Autowired
-//    private RedisTemplate<String, Object> redisTemplate;
-
     @Autowired
     private RedisClient redisClient;
 
-
-    /**
-     * 写hash
-     * @param key
-     * @param map
-     * @return
-     */
-    @PostMapping("/hset/{key}")
-    public String set(@PathVariable String key, @RequestBody Map map) {
-        redisClient.hSet(key, map);
-        return "success";
-    }
 
     /**
      * 读hash
@@ -37,5 +22,20 @@ public class CacheController {
     @GetMapping("/hgetAll/{key}")
     public Map hgetAll(@PathVariable String key) {
         return redisClient.hGetAll(key);
+    }
+
+    @PostMapping("/hmset/{key}")
+    public void hmset(@PathVariable(value = "key") String key, @RequestBody Map<String,Object> map){
+        redisClient.hSet(key, map);
+    }
+
+    @PostMapping("/set/{key}")
+    public void set(@PathVariable(value = "key") String key, @RequestParam(value = "value") Object value){
+        redisClient.set(key, value);
+    }
+
+    @PostMapping("sadd/{key}")
+    void sadd(@PathVariable(value = "key") String key, @RequestBody Map<String,Object>... maps){
+        redisClient.sAdd(key, maps);
     }
 }
