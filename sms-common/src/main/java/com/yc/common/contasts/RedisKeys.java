@@ -1,0 +1,11 @@
+package com.yc.common.contasts;
+
+/**
+ * @description: redis key
+ */
+public class RedisKeys {
+    public static final String client_business = "client_business:";
+    public static final String client_sign = "client_sign::";
+    public static final String client_template = "client_template:";
+    public static final String client_balance = "client_balance:";
+}

@@ -1,6 +1,8 @@
 package com.yc.api;
 
 import com.yc.api.filter.CheckFilter;
+import com.yc.common.exceptions.ApiException;
+import com.yc.common.model.StandardSubmit;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,7 +28,7 @@ public class CheckFilterContext {
     @Value(value = "${filters:apikey,ip}")
     private String filters;
 
-    public void check(Object obj) {
+    public void check(StandardSubmit obj) throws ApiException {
         String[] filterArray = filters.split(",");
         for (String filter : filterArray) {
             CheckFilter checkFilter = checkFilters.get(filter);

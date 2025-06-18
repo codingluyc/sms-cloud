@@ -6,6 +6,7 @@ import com.yc.api.common.RequestUtil;
 import com.yc.api.common.SmsCodeEnum;
 import com.yc.api.from.SingleSendForm;
 import com.yc.api.vo.ResultVO;
+import com.yc.common.exceptions.ApiException;
 import com.yc.common.model.StandardSubmit;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +31,9 @@ public class ApiController {
     private RequestUtil requestUtil;
 
     @RequestMapping("/test")
-    public void test() {
+    public void test() throws ApiException {
         log.info("=============");
-        checkFilterContext.check(new Object());
+        checkFilterContext.check(new StandardSubmit());
         log.info("=============");
     }
 
@@ -84,7 +85,7 @@ public class ApiController {
      * | -6     | 客户余额不足                  |
      */
     @PostMapping("/sendSingle")
-    public ResultVO send(@RequestBody @Validated SingleSendForm form, BindingResult result, HttpServletRequest request) {
+    public ResultVO send(@RequestBody @Validated SingleSendForm form, BindingResult result, HttpServletRequest request) throws ApiException {
         if(result.hasErrors()){
             return R.error(result.getFieldError().getDefaultMessage(), SmsCodeEnum.ERROR.getCode());
         }
@@ -98,8 +99,8 @@ public class ApiController {
         standardSubmit.setText(form.getText());
         standardSubmit.setUid(form.getUid());
         standardSubmit.setState(form.getState());
-        standardSubmit.setIp(requestUtil.getRealIp(request));
-
+        standardSubmit.setRealIp(requestUtil.getRealIp(request));
+        //校验
         checkFilterContext.check(standardSubmit);
         return R.ok();
     }

@@ -14,6 +14,10 @@ public class CacheController {
     private RedisClient redisClient;
 
 
+    @GetMapping("/hget/{key}/{field}")
+    public Object hget(@PathVariable String key, @PathVariable String field) {
+        return redisClient.hGet(key, field);
+    }
     /**
      * 读hash
      * @param key

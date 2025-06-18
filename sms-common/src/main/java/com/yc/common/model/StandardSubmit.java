@@ -20,8 +20,10 @@ public class StandardSubmit {
     private String apiKey;
     // 短信类型 0-验证码短信 1-通知类短信 2-营销类短信
     private Integer state;
-    // ip
+    // ip白名单
     private String ip;
+    //真实ip
+    private String realIp;
     // uid
     private String uid;
     // 手机号

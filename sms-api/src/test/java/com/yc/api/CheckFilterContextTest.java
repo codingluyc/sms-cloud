@@ -1,5 +1,6 @@
 package com.yc.api;
 
+import com.yc.common.model.StandardSubmit;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,6 @@ public class CheckFilterContextTest {
 
     @Test
     public void check() {
-        checkFilterContext.check(new Object());
+        checkFilterContext.check(new StandardSubmit());
     }
 }
