@@ -83,6 +83,9 @@ public class ApiController {
      * | -4     | 无可用模板                    |
      * | -5     | 手机号格式不正确              |
      * | -6     | 客户余额不足                  |
+     *
+     *
+     * 单条验证码短信接口
      */
     @PostMapping("/sendSingle")
     public ResultVO send(@RequestBody @Validated SingleSendForm form, BindingResult result, HttpServletRequest request) throws ApiException {

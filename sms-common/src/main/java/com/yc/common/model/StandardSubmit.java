@@ -30,6 +30,8 @@ public class StandardSubmit {
     private String mobile;
     // 签名
     private String signature;
+    // 签名id
+    private Long signId;
     // 短信内容
     private String text;
     //发送时间

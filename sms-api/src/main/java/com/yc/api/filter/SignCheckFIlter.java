@@ -44,6 +44,8 @@ public class SignCheckFIlter implements CheckFilter{
         }
         for(Map map : signSet){
             if(sign.equals(map.get(client_sign_info))){
+                obj.setSignature( sign);
+                obj.setSignId((Long) map.get("id"));
                 return;
             }
         }
