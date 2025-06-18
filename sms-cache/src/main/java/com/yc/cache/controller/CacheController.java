@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/cache")
@@ -39,7 +40,13 @@ public class CacheController {
     }
 
     @PostMapping("sadd/{key}")
-    void sadd(@PathVariable(value = "key") String key, @RequestBody Map<String,Object>... maps){
+    public void sadd(@PathVariable(value = "key") String key, @RequestBody Map<String,Object>... maps){
         redisClient.sAdd(key, maps);
+    }
+
+    @GetMapping("sget/{key}")
+    public Set<Object> sget(@PathVariable(value = "key") String key){
+        return redisClient.sMembers(key);
+
     }
 }

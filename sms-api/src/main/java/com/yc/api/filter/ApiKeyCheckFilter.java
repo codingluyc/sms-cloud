@@ -1,7 +1,7 @@
 package com.yc.api.filter;
 
 import com.yc.api.client.cache.CacheClient;
-import com.yc.common.contasts.RedisKeys;
+import com.yc.common.constants.RedisKeys;
 import com.yc.common.enums.ExceptionEnums;
 import com.yc.common.exceptions.ApiException;
 import com.yc.common.model.StandardSubmit;
