@@ -19,6 +19,8 @@ public enum ExceptionEnums {
     NO_TEMPLATE(-4, "无可用模板"),
     PHONE_FORMAT_ERROR(-5, "手机号格式不正确"),
     CLIENT_BALANCE_NOT_ENOUGH(-6, "客户余额不足"),
+    SNOWFLAKE_OUT_OF_RANGE(-7, "snowflake超出范围"),
+    SNOWFLAKE_TIME_BACK(-8, "snowflake时间回拨"),
     ;
     private Integer code;
     private String msg;

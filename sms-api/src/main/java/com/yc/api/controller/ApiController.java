@@ -6,9 +6,13 @@ import com.yc.api.common.RequestUtil;
 import com.yc.api.common.SmsCodeEnum;
 import com.yc.api.from.SingleSendForm;
 import com.yc.api.vo.ResultVO;
+import com.yc.common.constants.RabbitMQConstants;
 import com.yc.common.exceptions.ApiException;
 import com.yc.common.model.StandardSubmit;
+import com.yc.common.util.SnowFlakeUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.connection.CorrelationData;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -29,6 +33,12 @@ public class ApiController {
 
     @Autowired
     private RequestUtil requestUtil;
+
+    @Autowired
+    private SnowFlakeUtil snowFlakeUtil;
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     @RequestMapping("/test")
     public void test() throws ApiException {
@@ -92,9 +102,6 @@ public class ApiController {
         if(result.hasErrors()){
             return R.error(result.getFieldError().getDefaultMessage(), SmsCodeEnum.ERROR.getCode());
         }
-        //打印真实地址
-        log.info("realIp:{}", requestUtil.getRealIp(request));
-
         //封装数据
         StandardSubmit standardSubmit = new StandardSubmit();
         standardSubmit.setApiKey(form.getApikey());
@@ -105,6 +112,10 @@ public class ApiController {
         standardSubmit.setRealIp(requestUtil.getRealIp(request));
         //校验
         checkFilterContext.check(standardSubmit);
+        //生成短信的唯一全局id
+        standardSubmit.setSequenceId(snowFlakeUtil.nextId());
+        log.info("standardSubmit:{}", standardSubmit);
+        rabbitTemplate.convertAndSend(RabbitMQConstants.PRE_SEND_QUEUE, standardSubmit,new CorrelationData(String.valueOf(standardSubmit.getSequenceId())));
         return R.ok();
     }
 }

@@ -2,13 +2,14 @@ package com.yc.common.model;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  * 策略模块需要做校验和封装的pojo类对象
  */
 @Data
-public class StandardSubmit {
+public class StandardSubmit implements Serializable {
     /**
      * 短信的唯一标识，雪花算法
      */

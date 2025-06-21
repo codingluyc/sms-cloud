@@ -37,7 +37,8 @@ public class ClientBalanceMapperTest {
     @Test
     public void selectBySignId() throws JsonProcessingException {
         ClientBalance balance = clientBalanceMapper.selectByClientId(1L);
-        cacheClient.set("client_balance:1",balance.getBalance());
+        Map<String, Object> map = toMap(balance, objectMapper);
+        cacheClient.hmset("client_balance:1", map);
 
     }
 }

@@ -1,5 +1,5 @@
 server:
-  port: 9090
+  port: 9092
 
 spring:
   # rabbit mq
@@ -12,6 +12,6 @@ spring:
     # 开启消息确认机制
     publisher-confirms: true
     publisher-returns: true
-
-# 校验策略的内容和顺序
-filters: apikey,sign,template,mobile,ip,fee
+    listener:
+      simple:
+          acknowledge-mode: manual

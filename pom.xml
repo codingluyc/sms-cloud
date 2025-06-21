@@ -19,6 +19,7 @@
         <module>sms-common</module>
         <module>sms-cache</module>
         <module>sms-cache-loader</module>
+        <module>sms-strategy</module>
     </modules>
 
     <properties>
