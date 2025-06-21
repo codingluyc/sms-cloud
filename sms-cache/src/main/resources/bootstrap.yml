@@ -7,8 +7,8 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
+        server-addr: 192.168.3.9:8848
       config:
-        server-addr: 127.0.0.1:8848
+        server-addr: 192.168.3.9:8848
         file-extension: yml
         # nacos的配置文件data id应该是 sms-api-dev.yml
