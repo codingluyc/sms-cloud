@@ -45,13 +45,11 @@ public class StandardSubmit implements Serializable {
     private Integer mobileRegionCode;
     // 目标手机号的归属地
     private String mobileLocation;
+
     // 通道下发的原号码
     private String channelOriginMobile;
     // 渠道商标识
     private Long channelId;
     // 短信的发送状态
     private Integer reportState;
-
-
-
 }

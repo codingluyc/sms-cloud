@@ -43,7 +43,9 @@ public class ClientBusinessMapperTest {
         if(clientBusiness != null) {
             log.info("clientBusiness:{}", clientBusiness);
             Map<String, Object> map = toMap(clientBusiness, objectMapper);
-            cacheClient.hmset("client_business:" + clientBusiness.getId(), map);
+            map.put("clientFilters","black,dirtyword,phase,route");
+            map.put("ipAddress","127.0.0.1");
+            cacheClient.hmset("client_business:" + clientBusiness.getApikey(), map);
         }else {
             log.error("clientBusiness为空");
         }

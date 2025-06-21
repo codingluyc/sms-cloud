@@ -66,4 +66,9 @@ public class CacheController {
     public Set<Object> sget(@PathVariable(value = "key") String key){
         return redisClient.sMembers(key);
     }
+
+    @GetMapping("get/{key}")
+    public Object get(@PathVariable(value = "key") String key){
+        return redisClient.get(key);
+    }
 }

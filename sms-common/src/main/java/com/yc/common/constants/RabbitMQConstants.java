@@ -5,4 +5,5 @@ package com.yc.common.constants;
  */
 public interface RabbitMQConstants {
     String PRE_SEND_QUEUE = "pre_send_queue";
+    String MOBILE_AREA_OPERATOR = "mobile_area_operator";
 }

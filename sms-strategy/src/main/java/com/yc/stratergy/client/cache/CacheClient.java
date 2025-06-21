@@ -26,4 +26,7 @@ public interface CacheClient {
 
     @GetMapping("sget/{key}")
     Set<Map> sget(@PathVariable(value = "key") String key);
+
+    @GetMapping("get/{key}")
+    String get(@PathVariable(value = "key") String key);
 }
