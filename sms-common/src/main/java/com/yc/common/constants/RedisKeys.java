@@ -28,8 +28,6 @@ public class RedisKeys {
     //手机号黑名单
     public static final String MOBILE_BLACK = "black:";
 
-
-
-
-
+    //携号转网
+    public static final String TRANSFER = "transfer";
 }

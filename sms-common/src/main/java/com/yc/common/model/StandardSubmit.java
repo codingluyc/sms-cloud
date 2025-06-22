@@ -59,4 +59,7 @@ public class StandardSubmit implements Serializable {
     private Integer isCallBack;
     //用户回调地址
     private String callBackUrl;
+    //是否携号转网
+    private Boolean isTransfer;
+
 }
