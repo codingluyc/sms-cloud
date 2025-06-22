@@ -30,8 +30,8 @@ public class PreSendListener {
             strategyFilterContext.strategy(submit);
             channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
         }catch (Exception e){
-            log.error("策略执行异常: {}",e);
-            channel.basicReject(message.getMessageProperties().getDeliveryTag(),true);
+            log.error("策略执行异常: {}",e.getMessage());
+            channel.basicReject(message.getMessageProperties().getDeliveryTag(),false);
         }
 
 

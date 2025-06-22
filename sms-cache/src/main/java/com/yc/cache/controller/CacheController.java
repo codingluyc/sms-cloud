@@ -62,6 +62,11 @@ public class CacheController {
         return result;
     }
 
+    @GetMapping("/smembers/{key}")
+    public Set<Object> smembers(@PathVariable(value = "key") String key){
+        return redisClient.sMembers(key);
+    }
+
     @DeleteMapping("delete/{key}")
     public void delete(@PathVariable(value = "key") String key){
         redisClient.delete(key);

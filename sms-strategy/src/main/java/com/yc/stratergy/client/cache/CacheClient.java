@@ -35,4 +35,7 @@ public interface CacheClient {
 
     @PostMapping("sinter/{key1}/{key2}")
     Set<Object> sinter(@PathVariable(value = "key1") String key1, @PathVariable(value = "key2") String key2,@RequestBody Object... set);
+
+    @GetMapping("/smembers/{key}")
+    Set<String> smembers(@PathVariable(value = "key") String key);
 }
