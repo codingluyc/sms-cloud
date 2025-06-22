@@ -60,7 +60,7 @@ public class PhaseStrategyFilter implements StrategyFilter{
         }
 
         if(!UNKNOWN.equals(areaInfo)){
-            log.info("mobile:{} mobileLocation: {}, operatorId: {}", submit.getMobile(),submit.getMobileLocation(), submit.getOperatorId());
+            log.error("mobile:{} mobileLocation: {}, operatorId: {}", submit.getMobile(),submit.getMobileLocation(), submit.getOperatorId());
         }
 
 

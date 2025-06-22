@@ -2,6 +2,7 @@ package com.yc.stratergy.filter;
 
 
 import com.yc.common.constants.RedisKeys;
+import com.yc.common.exceptions.StrategyException;
 import com.yc.common.model.StandardSubmit;
 import com.yc.stratergy.client.cache.CacheClient;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +36,9 @@ public class StrategyFilterContext {
                 if (strategyFilter != null){
                     try {
                         strategyFilter.check(submit);
-                    }catch (Exception e){
+                    }catch (StrategyException e){
+                      log.error("策略异常:{}",e.getMessage());
+                    } catch (Exception e){
                         log.error("策略执行异常：{}",e.getMessage());
                     }
                 }else{

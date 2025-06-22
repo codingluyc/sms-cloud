@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api")
@@ -114,6 +115,7 @@ public class ApiController {
         checkFilterContext.check(standardSubmit);
         //生成短信的唯一全局id
         standardSubmit.setSequenceId(snowFlakeUtil.nextId());
+        standardSubmit.setSendTime(LocalDateTime.now());
         log.info("standardSubmit:{}", standardSubmit);
         rabbitTemplate.convertAndSend(RabbitMQConstants.PRE_SEND_QUEUE, standardSubmit,new CorrelationData(String.valueOf(standardSubmit.getSequenceId())));
         return R.ok();
