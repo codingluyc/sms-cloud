@@ -3,7 +3,9 @@ package com.yc.stratergy.filter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.yc.common.constants.RabbitMQConstants;
 import com.yc.common.constants.RedisKeys;
+import com.yc.common.enums.ExceptionEnums;
 import com.yc.common.enums.MobileOperatorEnum;
+import com.yc.common.exceptions.StrategyException;
 import com.yc.common.model.MobileAreaOperator;
 import com.yc.common.model.StandardSubmit;
 import com.yc.stratergy.client.cache.CacheClient;
@@ -32,7 +34,7 @@ public class PhaseStrategyFilter implements StrategyFilter{
     @Autowired
     RabbitTemplate rabbitTemplate;
     @Override
-    public void check(StandardSubmit submit) {
+    public void check(StandardSubmit submit) throws StrategyException {
         String mobile = submit.getMobile().substring(mobile_start, mobile_end);
         String areaInfo = cacheClient.get(RedisKeys.PHASE +mobile);
         if(null == areaInfo){
@@ -53,7 +55,12 @@ public class PhaseStrategyFilter implements StrategyFilter{
             String[] areaInfoArray = areaInfo.split(",");
             if (areaInfoArray.length == 2) {
                 submit.setMobileLocation(areaInfoArray[0]);
-                submit.setOperatorId(MobileOperatorEnum.getByName(areaInfoArray[1]).getCode());
+                MobileOperatorEnum operatorEnum = MobileOperatorEnum.getByName(areaInfoArray[1]);
+                if(operatorEnum != null) {
+                    submit.setOperatorId(operatorEnum.getCode());
+                }else{
+                    throw new StrategyException(ExceptionEnums.MOBILE_OPERATOR_NOT_FOUND);
+                }
             } else {
                 areaInfo = UNKNOWN;
             }

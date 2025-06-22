@@ -24,6 +24,9 @@ public enum ExceptionEnums {
 
 
     DIRTY_WORD(-9, "包含敏感词"),
+    MOBILE_BLACK_CLIENT(-10,"用户级手机号黑名单" ),
+    MOBILE_BLACK_GLOBAL(-10,"平台级手机号黑名单" ),
+    MOBILE_OPERATOR_NOT_FOUND(-11,"手机运营商未找到")
     ;
     private Integer code;
     private String msg;

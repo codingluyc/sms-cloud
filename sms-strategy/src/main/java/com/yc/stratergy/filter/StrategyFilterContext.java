@@ -50,8 +50,10 @@ public class StrategyFilterContext {
                       submit.setReportState(ReportEnum.FAIL.getCode());
                       submit.setErrorMsg(e.getMessage());
                       rabbitTemplate.convertAndSend(RabbitMQConstants.SMS_WRITE_LOG, submit);
+                      break;
                     } catch (Exception e){
                         log.error("策略执行异常：{}",e.getMessage());
+                        break;
                     }
                 }else{
                     log.error("没有找到对应的过滤器: {}",strategy);

@@ -25,6 +25,10 @@ public class RedisKeys {
     public static final String MOBILE_DIRTYWORD = "mobile_dirtyword";
 
 
+    //手机号黑名单
+    public static final String MOBILE_BLACK = "black:";
+
+
 
 
 
