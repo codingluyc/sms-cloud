@@ -31,6 +31,8 @@ public class ApiKeyCheckFilter implements CheckFilter{
 
         //封装正常数据
         obj.setClientId(Long.parseLong( map.get("id")+""));
+        obj.setIsCallBack( Integer.parseInt(map.get("isCallback")+""));
+        obj.setCallBackUrl( map.get("callbackUrl")+"");
         log.info("查询到用户信息: {}",map);
     }
 

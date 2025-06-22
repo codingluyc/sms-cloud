@@ -14,8 +14,22 @@ import org.springframework.context.annotation.Bean;
 @SpringBootConfiguration
 public class RabbitMQConfig {
 
+    // 预发送状态队列
     @Bean
     public Queue preSendQueue(){
         return QueueBuilder.durable(RabbitMQConstants.MOBILE_AREA_OPERATOR).build();
+    }
+
+
+    // 日志读写队列
+    @Bean
+    public Queue smsWriteLogQueue(){
+        return QueueBuilder.durable(RabbitMQConstants.SMS_WRITE_LOG).build();
+    }
+
+    // 日志读写队列
+    @Bean
+    public Queue smsPushReportQueue(){
+        return QueueBuilder.durable(RabbitMQConstants.SMS_PUSH_REPORT).build();
     }
 }

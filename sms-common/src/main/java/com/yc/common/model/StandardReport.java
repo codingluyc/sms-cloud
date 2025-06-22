@@ -2,14 +2,13 @@ package com.yc.common.model;
 
 import lombok.Data;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 策略模块需要做校验和封装的pojo类对象
+ * 用于推送状态报告
  */
 @Data
-public class StandardSubmit implements Serializable {
+public class StandardReport {
     /**
      * 短信的唯一标识，雪花算法
      */
@@ -17,8 +16,7 @@ public class StandardSubmit implements Serializable {
 
     // 客户端标识，查询缓存
     private Long clientId;
-    //api key
-    private String apiKey;
+
     // 短信类型 0-验证码短信 1-通知类短信 2-营销类短信
     private Integer state;
     // ip白名单
@@ -54,7 +52,6 @@ public class StandardSubmit implements Serializable {
     private Integer reportState;
     // 短信异常新
     private String errorMsg;
-
     //是否需要推送给用户
     private Integer isCallBack;
     //用户回调地址
