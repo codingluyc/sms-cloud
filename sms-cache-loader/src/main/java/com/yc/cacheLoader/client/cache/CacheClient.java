@@ -23,4 +23,7 @@ public interface CacheClient {
     @PostMapping("/pipelineStr")
     void pipelineStr( @RequestBody Map<String,Object> map);
 
+    @PostMapping("saddstr/{key}")
+    void saddstr(@PathVariable(value = "key") String key, @RequestBody String... values);
+
 }

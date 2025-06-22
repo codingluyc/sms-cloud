@@ -4,14 +4,28 @@ package com.yc.common.constants;
  * @description: redis key
  */
 public class RedisKeys {
-    public static final String client_business = "client_business:";
+    //用户信息
+    public static final String CLIENT_BUSINESS = "client_business:";
 
-    public static final String client_filters = "clientFilters";
-    public static final String client_sign = "client_sign:";
-    public static final String client_template = "client_template:";
-    public static final String client_balance = "client_balance:";
+    //用户信息中的自定义过滤器
+    public static final String CLIENT_FILTERS = "clientFilters";
+    //签名
+    public static final String CLIENT_SIGN = "client_sign:";
 
-    public static final String phase = "phase:";
+    //模板
+    public static final String CLIENT_TEMPLATE = "client_template:";
+
+    //余额
+    public static final String CLIENT_BALANCE = "client_balance:";
+
+    //手机号段
+    public static final String PHASE = "phase:";
+
+    //敏感词
+    public static final String MOBILE_DIRTYWORD = "mobile_dirtyword";
+
+
+
 
 
 }

@@ -50,7 +50,7 @@ public class FeeCheckFilter implements CheckFilter{
         }
 
         //3、从Redis中查询出客户剩余的金额
-        Long balance = ((Integer) cacheClient.hget(RedisKeys.client_balance + submit.getClientId(), BALANCE)).longValue();
+        Long balance = ((Integer) cacheClient.hget(RedisKeys.CLIENT_BALANCE + submit.getClientId(), BALANCE)).longValue();
 
         //4、判断金额是否满足当前短信费用\
         if(balance >= submit.getFee()){

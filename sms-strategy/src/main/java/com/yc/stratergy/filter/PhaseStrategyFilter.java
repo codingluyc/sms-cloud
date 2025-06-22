@@ -34,7 +34,7 @@ public class PhaseStrategyFilter implements StrategyFilter{
     @Override
     public void check(StandardSubmit submit) {
         String mobile = submit.getMobile().substring(mobile_start, mobile_end);
-        String areaInfo = cacheClient.get(RedisKeys.phase+mobile);
+        String areaInfo = cacheClient.get(RedisKeys.PHASE +mobile);
         if(null == areaInfo){
             //请求第三方
             try {

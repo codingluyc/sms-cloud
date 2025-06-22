@@ -25,7 +25,7 @@ public class TempCheckFilter implements CheckFilter{
     @Override
     public void check(StandardSubmit obj) throws ApiException {
         //找到模板
-        Set<Map> templates = cacheClient.sget(RedisKeys.client_template+obj.getSignId());
+        Set<Map> templates = cacheClient.sget(RedisKeys.CLIENT_TEMPLATE +obj.getSignId());
         if (templates == null || templates.size() == 0) {
             log.error("模板不存在");
             throw new ApiException(ExceptionEnums.NO_TEMPLATE);

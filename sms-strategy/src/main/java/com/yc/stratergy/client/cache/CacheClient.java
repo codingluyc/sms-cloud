@@ -3,6 +3,8 @@ package com.yc.stratergy.client.cache;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Map;
 import java.util.Set;
@@ -29,4 +31,8 @@ public interface CacheClient {
 
     @GetMapping("get/{key}")
     String get(@PathVariable(value = "key") String key);
+
+
+    @PostMapping("sinter/{key1}/{key2}")
+    Set<Object> sinter(@PathVariable(value = "key1") String key1, @PathVariable(value = "key2") String key2,@RequestBody Object... set);
 }

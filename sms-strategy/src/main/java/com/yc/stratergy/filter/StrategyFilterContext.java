@@ -25,7 +25,7 @@ public class StrategyFilterContext {
     public void strategy(StandardSubmit submit){
 
         //获取过滤器
-        String filters = cacheClient.hgetStr(RedisKeys.client_business + submit.getApiKey(),RedisKeys.client_filters );
+        String filters = cacheClient.hgetStr(RedisKeys.CLIENT_BUSINESS + submit.getApiKey(),RedisKeys.CLIENT_FILTERS);
 
         String[] filterArray ;
 
@@ -33,7 +33,11 @@ public class StrategyFilterContext {
             for(String strategy : filterArray){
                 StrategyFilter strategyFilter = stringStrategyFilterMap.get(strategy);
                 if (strategyFilter != null){
-                    strategyFilter.check(submit);
+                    try {
+                        strategyFilter.check(submit);
+                    }catch (Exception e){
+                        log.error("策略执行异常：{}",e.getMessage());
+                    }
                 }else{
                     log.error("没有找到对应的过滤器: {}",strategy);
                 }

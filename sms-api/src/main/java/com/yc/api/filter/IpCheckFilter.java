@@ -19,7 +19,7 @@ public class IpCheckFilter implements CheckFilter{
     @Override
     public void check(StandardSubmit obj) throws ApiException {
 
-        String ipAddress = cacheClient.hgetStr(RedisKeys.client_business + obj.getApiKey(),"ipAddress");
+        String ipAddress = cacheClient.hgetStr(RedisKeys.CLIENT_BUSINESS + obj.getApiKey(),"ipAddress");
         obj.setIp(ipAddress);
         if (StringUtils.isEmpty(ipAddress) || ipAddress.contains(obj.getRealIp())) {
             return;

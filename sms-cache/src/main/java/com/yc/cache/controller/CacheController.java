@@ -49,6 +49,24 @@ public class CacheController {
         redisClient.sAdd(key, maps);
     }
 
+    @PostMapping("saddstr/{key}")
+    public void saddstr(@PathVariable(value = "key") String key, @RequestBody String... values){
+        redisClient.sAdd(key, values);
+    }
+
+    @PostMapping("sinter/{key1}/{key2}")
+    public Set<Object> sinter(@PathVariable(value = "key1") String key1, @PathVariable(value = "key2") String key2,@RequestBody Object... set){
+        redisClient.sAdd(key2, set);
+        Set<Object> result = redisClient.sIntersect(key1,key2);
+        redisClient.delete(key2);
+        return result;
+    }
+
+    @DeleteMapping("delete/{key}")
+    public void delete(@PathVariable(value = "key") String key){
+        redisClient.delete(key);
+    }
+
     @PostMapping("/pipelineStr")
     public void pipelineStr( @RequestBody Map<String,Object> map){
         log.info("pipelineStr size: {}",map.size());

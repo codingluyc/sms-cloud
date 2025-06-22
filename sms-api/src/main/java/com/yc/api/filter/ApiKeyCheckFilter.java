@@ -23,7 +23,7 @@ public class ApiKeyCheckFilter implements CheckFilter{
     @Override
     public void check(StandardSubmit obj) throws ApiException {
 
-        Map map = cacheClient.hgetAll(RedisKeys.client_business + obj.getApiKey());
+        Map map = cacheClient.hgetAll(RedisKeys.CLIENT_BUSINESS + obj.getApiKey());
         if (map == null || map.isEmpty()) {
             log.error("api key error {}", obj.getApiKey());
             throw new ApiException(ExceptionEnums.ILLEGAL_APIKEY);

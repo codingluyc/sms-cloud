@@ -37,7 +37,7 @@ public class SignCheckFIlter implements CheckFilter{
         }
 
         //查询缓存签名
-        Set<Map> signSet = cacheclient.sget(RedisKeys.client_sign + obj.getClientId());
+        Set<Map> signSet = cacheclient.sget(RedisKeys.CLIENT_SIGN + obj.getClientId());
         if(signSet == null || signSet.isEmpty()){
             log.error("用户未绑定签名");
             throw new ApiException(ExceptionEnums.NO_SIGN);
