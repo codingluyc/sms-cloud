@@ -22,6 +22,8 @@ public interface CacheClient {
 
     @GetMapping("/hget/{key}/{field}")
     String hgetStr(@PathVariable String key, @PathVariable String field);
+    @PostMapping("/hincrBy/{key}/{field}/{increment}")
+    Long hincrBy(@PathVariable(value = "key") String key, @PathVariable(value = "field") String field, @PathVariable(value = "increment") Long increment);
 
     @GetMapping("sget/{key}")
     Set<Map> sget(@PathVariable(value = "key") String key);

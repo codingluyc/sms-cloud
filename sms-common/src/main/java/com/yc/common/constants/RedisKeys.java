@@ -17,6 +17,8 @@ public class RedisKeys {
 
     //余额
     public static final String CLIENT_BALANCE = "client_balance:";
+    //余额字段
+    public static final String FEE_FIELD = "balance";
 
     //手机号段
     public static final String PHASE = "phase:";

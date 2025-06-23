@@ -43,6 +43,11 @@ public class CacheController {
     public void hmset(@PathVariable(value = "key") String key, @RequestBody Map<String,Object> map){
         redisClient.hSet(key, map);
     }
+    @PostMapping("/hincrBy/{key}/{field}/{increment}")
+    public Long hincrBy(@PathVariable(value = "key") String key, @PathVariable(value = "field") String field, @PathVariable(value = "increment") Long increment){
+        return redisClient.hIncrementBy(key, field, increment);
+    }
+
 
     @PostMapping("/set/{key}")
     public void set(@PathVariable(value = "key") String key, @RequestParam(value = "value") Object value){
