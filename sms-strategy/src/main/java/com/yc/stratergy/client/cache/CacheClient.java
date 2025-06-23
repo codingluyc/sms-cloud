@@ -1,10 +1,7 @@
 package com.yc.stratergy.client.cache;
 
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 import java.util.Set;
@@ -44,4 +41,7 @@ public interface CacheClient {
 
     @GetMapping("/zrangeCount/{key}/{start}/{end}")
     Integer zrangeCount(@PathVariable(value = "key") String key,@PathVariable(value = "start") Double start,@PathVariable(value = "end") Double end);
+
+    @DeleteMapping("/zdel/{key}/{member}")
+    Long zdel(@PathVariable(value = "key") String key,@PathVariable(value = "member") Object member);
 }

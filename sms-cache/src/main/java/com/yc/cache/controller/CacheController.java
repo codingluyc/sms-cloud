@@ -114,5 +114,10 @@ public class CacheController {
         return set.size();
     }
 
+    @DeleteMapping("/zdel/{key}/{member}")
+    public Long zdel(@PathVariable(value = "key") String key,@PathVariable(value = "member") Object member){
+        return redisClient.zRemove(key,member);
+    }
+
 
 }
