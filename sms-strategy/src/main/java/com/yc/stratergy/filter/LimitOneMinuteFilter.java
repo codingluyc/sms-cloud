@@ -44,6 +44,8 @@ public class LimitOneMinuteFilter implements StrategyFilter{
         //队列中数量超过1（大于等于2）
         if(count > 1){
             throw new StrategyException(ExceptionEnums.LIMIT_MINUTES);
+        }else{
+            log.info("通过一分钟限流规则");
         }
 
 
