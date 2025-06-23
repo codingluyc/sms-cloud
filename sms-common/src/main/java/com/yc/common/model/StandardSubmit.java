@@ -63,5 +63,6 @@ public class StandardSubmit implements Serializable {
     private Boolean isTransfer;
     //针对一小时限流规则存储额的时间毫秒值
     private Long oneHourLimitMilli;
-
+    //
+    private String srcNumber;
 }

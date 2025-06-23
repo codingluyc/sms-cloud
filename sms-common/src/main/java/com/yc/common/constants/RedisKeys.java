@@ -38,4 +38,9 @@ public class RedisKeys {
 
     //小时限流
     public static final String LIMIT_HOUR = "limit:hour:";
+    //用户通道
+    public static final String CLIENT_CHANNEL = "clientChannel:";
+
+    //通道
+    public static final String CHANNEL = "channel:";
 }

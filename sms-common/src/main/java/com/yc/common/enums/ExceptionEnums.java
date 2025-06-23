@@ -30,7 +30,7 @@ public enum ExceptionEnums {
 
     LIMIT_MINUTES(-12,"一分钟内发送次数超过限制"),
     LIMIT_HOURS(-13,"一小时内发送次数超过限制"),
-    ;
+    CHANNEL_NOT_FOUND(-14,"无可用通道" );
     private Integer code;
     private String msg;
     ExceptionEnums(Integer code, String msg) {
