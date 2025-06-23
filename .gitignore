@@ -12,6 +12,8 @@ target/
 *.iml
 *.ipr
 
+**/bootstrap.yml
+
 ### Eclipse ###
 .apt_generated
 .classpath

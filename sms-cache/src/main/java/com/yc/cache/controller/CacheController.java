@@ -4,6 +4,8 @@ import com.msb.framework.redis.RedisClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisOperations;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -18,6 +20,9 @@ public class CacheController {
 
     @Autowired
     private RedisClient redisClient;
+
+    @Autowired
+    RedisTemplate redisTemplate;
 
 
     @GetMapping("/hget/{key}/{field}")
@@ -94,4 +99,20 @@ public class CacheController {
     public Object get(@PathVariable(value = "key") String key){
         return redisClient.get(key);
     }
+
+    @PostMapping("/zadd/{key}/{score}/{member}")
+    public Boolean zadd(@PathVariable(value = "key") String key,@PathVariable(value = "score") Long score,@PathVariable(value = "member") Object member){
+        return redisClient.zAdd(key,member,score);
+    }
+
+    @GetMapping("/zrangeCount/{key}/{start}/{end}")
+    public Integer zrangeCount(@PathVariable(value = "key") String key,@PathVariable(value = "start") Double start,@PathVariable(value = "end") Double end){
+        Set<ZSetOperations.TypedTuple<Object>> set = redisTemplate.opsForZSet().rangeByScoreWithScores(key,start,end);
+        if(set == null){
+            return 0;
+        }
+        return set.size();
+    }
+
+
 }

@@ -38,4 +38,10 @@ public interface CacheClient {
 
     @GetMapping("/smembers/{key}")
     Set<String> smembers(@PathVariable(value = "key") String key);
+
+    @PostMapping("/zadd/{key}/{score}/{member}")
+    Boolean zadd(@PathVariable(value = "key") String key,@PathVariable(value = "score") Long score,@PathVariable(value = "member") Object member);
+
+    @GetMapping("/zrangeCount/{key}/{start}/{end}")
+    Integer zrangeCount(@PathVariable(value = "key") String key,@PathVariable(value = "start") Double start,@PathVariable(value = "end") Double end);
 }

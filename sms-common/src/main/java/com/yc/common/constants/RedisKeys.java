@@ -30,4 +30,7 @@ public class RedisKeys {
 
     //携号转网
     public static final String TRANSFER = "transfer";
+
+    //分钟限流
+    public static final String LIMIT = "limit:minutes:";
 }
