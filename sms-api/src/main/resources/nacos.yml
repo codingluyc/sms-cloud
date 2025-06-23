@@ -4,7 +4,7 @@ server:
 spring:
   # rabbit mq
   rabbitmq:
-    host: 192.168.3.9
+    host: www.sms.com
     port: 5672
     username: root
     password: 123456
