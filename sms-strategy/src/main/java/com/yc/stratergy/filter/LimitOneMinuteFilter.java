@@ -29,6 +29,9 @@ public class LimitOneMinuteFilter implements StrategyFilter{
 
     @Override
     public void check(StandardSubmit submit) throws  StrategyException {
+        if(submit.getState() != 0){
+            return;
+        }
         LocalDateTime sendTime = submit.getSendTime();
         //东八区
         Long score = sendTime.toInstant(ZoneOffset.ofHours(8)).toEpochMilli();

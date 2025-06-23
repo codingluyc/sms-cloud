@@ -32,6 +32,9 @@ public class LimitOneHourFilter implements StrategyFilter{
 
     @Override
     public void check(StandardSubmit submit) throws IOException, StrategyException {
+        if(submit.getState() != 0){
+            return;
+        }
 
         LocalDateTime sendTime = submit.getSendTime();
         //东八区
