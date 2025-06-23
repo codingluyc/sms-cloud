@@ -61,5 +61,7 @@ public class StandardSubmit implements Serializable {
     private String callBackUrl;
     //是否携号转网
     private Boolean isTransfer;
+    //针对一小时限流规则存储额的时间毫秒值
+    private Long oneHourLimitMilli;
 
 }

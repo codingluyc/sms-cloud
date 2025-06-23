@@ -39,10 +39,13 @@ public class LimitOneMinuteFilter implements StrategyFilter{
             throw new StrategyException(ExceptionEnums.LIMIT_MINUTES);
         }
         long start = score - ONE_MINUTE;
-        int count = cacheClient.zrangeCount(RedisKeys.LIMIT+submit.getClientId()+SEP+submit.getMobile(),Double.parseDouble(start+""),Double.parseDouble(score+""));
+        String key = RedisKeys.LIMIT+submit.getClientId()+SEP+submit.getMobile();
+        int count = cacheClient.zrangeCount(key,Double.parseDouble(start+""),Double.parseDouble(score+""));
 
         //队列中数量超过1（大于等于2）
         if(count > 1){
+            //删除发送失败的数据
+            cacheClient.zdel(key,score);
             throw new StrategyException(ExceptionEnums.LIMIT_MINUTES);
         }else{
             log.info("通过一分钟限流规则");

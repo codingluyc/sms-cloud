@@ -29,6 +29,7 @@ public enum ExceptionEnums {
     MOBILE_OPERATOR_NOT_FOUND(-11,"手机运营商未找到"),
 
     LIMIT_MINUTES(-12,"一分钟内发送次数超过限制"),
+    LIMIT_HOURS(-13,"一小时内发送次数超过限制"),
     ;
     private Integer code;
     private String msg;

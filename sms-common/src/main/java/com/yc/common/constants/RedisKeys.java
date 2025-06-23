@@ -32,5 +32,8 @@ public class RedisKeys {
     public static final String TRANSFER = "transfer";
 
     //分钟限流
-    public static final String LIMIT = "limit:minutes:";
+    public static final String LIMIT = "limit:minute:";
+
+    //小时限流
+    public static final String LIMIT_HOUR = "limit:hour:";
 }
